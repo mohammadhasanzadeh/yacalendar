@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>CalendarDialog.qml</file>
+        <file>MonthGrid.qml</file>
+        <file>CalendarModel.qml</file>
+        <file>GridCombobox.qml</file>
+        <file>RangeModel.qml</file>
+        <file>resource/right.svg</file>
+        <file>resource/left.svg</file>
+    </qresource>
+</RCC>
