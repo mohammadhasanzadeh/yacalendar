@@ -9,10 +9,16 @@ Some easy to use and  `Qt.labs.calendar` like components for use the QCalendar A
 ## Requirements:
 Qt >= 5.14
 
-## Usage:
+## Add to project:
 Add `yacalendar.pri` to your `.pro` file:
+
 `include(Path/to/yacalendar.pri)`
 
+And then register the QML types with calling the `register_calendar` function in the `main.cpp`, like the below:
+
+`yacalendar::register_calendar();`
+
+## Usage:
 ```
 CalendarDialog
 {
