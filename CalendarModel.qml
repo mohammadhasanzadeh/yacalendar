@@ -1,6 +1,8 @@
 import QtQuick 2.12
 import QtQml.Models 2.14
 
+import "util.js" as UTIL
+
 Item
 {
     id: control
@@ -15,24 +17,15 @@ Item
 
     function index_of(year, month)
     {
-        return private_props.find_in_model(private_props.model, (item) => {
-                                                return (item.year === year && item.month === month);
-                                           });
+        return UTIL.find_in_model(private_props.model, (item) => {
+                                      return (item.year === year && item.month === month);
+                                  });
     }
 
     QtObject
     {
         id: private_props
         property ListModel model: ListModel {}
-        function find_in_model(model, criteria, return_object=false)
-        {
-            for (let counter = 0; counter < model.count; ++counter)
-            {
-                if (criteria(model.get(counter)))
-                    return (return_object) ? model.get(counter) : counter;
-            }
-            return (return_object) ? null : -1;
-        }
     }
 
     function init()
