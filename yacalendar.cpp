@@ -50,7 +50,6 @@ void yacalendar::init_calendar(yacalendar::CalendarTypes type)
         break;
     }
     m_calendar = QCalendar(system);
-    m_locale = QLocale(QLocale::Persian, QLocale::Iran);
 }
 
 QString yacalendar::zero_pad(int number) const

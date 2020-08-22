@@ -153,7 +153,7 @@ Dialog
                 textRole: "number"
                 currentIndex: 0
                 indicator.rotation: (down) ? 180 : 0
-                Material.theme: control.Material.Dark
+                Material.theme: control.Material.theme
 
                 displayText: {
                     if (listview.currentIndex === -1)
