@@ -8,5 +8,6 @@
         <file>resource/right.svg</file>
         <file>resource/left.svg</file>
         <file>util.js</file>
+        <file>YearMonthDialog.qml</file>
     </qresource>
 </RCC>

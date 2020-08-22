@@ -62,6 +62,16 @@ QString yacalendar::month_name(int month)
     return m_calendar.monthName(m_locale, month);
 }
 
+QString yacalendar::month_name(int month, int year)
+{
+    return m_calendar.monthName(m_locale, month, year);
+}
+
+int yacalendar::months_in_year(int year) const
+{
+    return m_calendar.monthsInYear(year);
+}
+
 int yacalendar::days_in_month(int month) const
 {
     return m_calendar.daysInMonth(month);

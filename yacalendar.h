@@ -12,6 +12,8 @@ class yacalendar : public QObject
     Q_OBJECT
 public:
     Q_INVOKABLE QString month_name(int month);
+    Q_INVOKABLE QString month_name(int month, int year);
+    Q_INVOKABLE int months_in_year(int year) const;
     Q_INVOKABLE int days_in_month(int month) const;
     Q_INVOKABLE int days_in_month(int month, int year) const;
     Q_INVOKABLE QDate first_day_of_month(int month, int year) const;
