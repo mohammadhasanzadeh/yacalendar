@@ -10,20 +10,20 @@ Item
     ListModel
     {
         id: calendar_system_model
-        ListElement {name:"Gregorian"; system: CalendarSystem.Gregorian}
-        ListElement {name:"Julian"; system: CalendarSystem.Julian}
-        ListElement {name:"Milankovic"; system: CalendarSystem.Milankovic}
-        ListElement {name:"Jalali"; system: CalendarSystem.Jalali}
-        ListElement {name:"IslamicCivil"; system: CalendarSystem.IslamicCivil}
+        ListElement { name: "Gregorian";    system: CalendarSystem.Gregorian }
+        ListElement { name: "Julian";       system: CalendarSystem.Julian }
+        ListElement { name: "Milankovic";   system: CalendarSystem.Milankovic }
+        ListElement { name: "Jalali";       system: CalendarSystem.Jalali }
+        ListElement { name: "IslamicCivil"; system: CalendarSystem.IslamicCivil }
     }
 
     ListModel
     {
         id: locale_model
-        ListElement {name:"fa_IR"}
-        ListElement {name:"de_DE"}
-        ListElement {name:"fr_FR"}
-        ListElement {name:"en_US"}
+        ListElement { name:"fa_IR" }
+        ListElement { name:"de_DE" }
+        ListElement { name:"fr_FR" }
+        ListElement { name:"en_US" }
     }
 
 

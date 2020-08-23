@@ -64,6 +64,23 @@ Item
                 calendar_dialog.open()
             }
         }
+
+        Label
+        {
+            id: output_current_systems_lbl
+            Layout.fillWidth: true
+            horizontalAlignment: Qt.AlignHCenter
+            font.pointSize: 20
+        }
+
+        Label
+        {
+            id: output_gregorian_lbl
+            Layout.fillWidth: true
+            horizontalAlignment: Qt.AlignHCenter
+            font.pointSize: 18
+            font.weight: Font.Light
+        }
     }
 
     CalendarDialog
@@ -83,7 +100,13 @@ Item
         onFinished:
         {
             if (result === CalendarDialog.Accepted)
-                console.log(JSON.stringify(selected_date))
+            {
+                const date = `${selected_date.year}-${selected_date.month}-${selected_date.day}`
+                output_current_systems_lbl.text = `${calendar_system_combo.currentText}: ${date}`
+
+                if (calendar_system_combo.currentText !== "Gregorian")
+                    output_gregorian_lbl.text = `Gregorian: ${calendar_system.to_gregorian(date, '-', 'yyyy-MM-dd')}`
+            }
         }
     }
 }
