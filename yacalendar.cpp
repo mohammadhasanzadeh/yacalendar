@@ -97,6 +97,11 @@ QString yacalendar::format_date(const QDate &date, const QString &format)
     return date.toString(format);
 }
 
+QString yacalendar::format_date(int year, int month, int day, const QString &format)
+{
+    return QDate(year, month, day).toString(format);
+}
+
 QString yacalendar::date_time_tostring(const QDateTime &datetime, const QString &format)
 {
     return m_calendar.dateTimeToString(format, datetime, datetime.date(), datetime.time(), m_locale);

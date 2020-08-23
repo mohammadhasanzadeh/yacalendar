@@ -20,6 +20,8 @@ public:
     Q_INVOKABLE QVariantMap today();
 
     Q_INVOKABLE QString format_date(const QDate& date, const QString& format);
+    Q_INVOKABLE QString format_date(int year, int month, int day, const QString &format);
+
     Q_INVOKABLE QString date_time_tostring(const QDateTime &datetime, const QString &format);
 
     Q_INVOKABLE QVariantMap to_gregorian(int year, int month, int day) const;
