@@ -47,6 +47,21 @@ Dialog
         locale: control.locale
     }
 
+    Connections {
+        target: control.system
+
+        onLocaleChanged:
+        {
+            generate_month_range((selected_year < 0) ? today.year : selected_year);
+        }
+
+        onTypeChanged:
+        {
+            generate_month_range((selected_year < 0) ? today.year : selected_year);
+        }
+
+    }
+
     property var today: control.system.today();
     property ListModel month_range: ListModel {}
     property int from: 1980
@@ -136,7 +151,6 @@ Dialog
             cell_height: 35
             textRole: "number"
             indicator.rotation: (down) ? 180 : 0
-            Material.theme: control.Material.Dark
 
             model: RangeModel {
                 from: control.from
