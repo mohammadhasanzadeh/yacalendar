@@ -12,6 +12,8 @@ class yacalendar : public QObject
     Q_OBJECT
 public:
     Q_INVOKABLE QString month_name(int month);
+    Q_INVOKABLE QString month_name(int month, int year);
+    Q_INVOKABLE int months_in_year(int year) const;
     Q_INVOKABLE int days_in_month(int month) const;
     Q_INVOKABLE int days_in_month(int month, int year) const;
     Q_INVOKABLE QDate first_day_of_month(int month, int year) const;
@@ -27,6 +29,7 @@ public:
     Q_INVOKABLE QVariantMap to_system_date(int year, int month, int day) const;
     Q_INVOKABLE QString to_system_date(const QDate& date, QChar separator, bool zero_padding = true) const;
     Q_INVOKABLE QString to_system_date(const QString& date, QString in_format, QChar separator, bool zero_padding = true) const;
+    Q_INVOKABLE QVariantMap diff_dates(const QDate from, const QDate to);
 
     Q_PROPERTY(CalendarTypes type READ get_type WRITE set_type NOTIFY type_changed)
     Q_PROPERTY(QLocale locale MEMBER m_locale NOTIFY locale_changed)

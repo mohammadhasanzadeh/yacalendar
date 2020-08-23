@@ -3,3 +3,4 @@ CalendarDialog 1.0 CalendarDialog.qml
 GridCombobox 1.0 GridCombobox.qml
 MonthGrid 1.0 MonthGrid.qml
 RangeModel 1.0 RangeModel.qml
+YearMonthDialog 1.0 YearMonthDialog.qml

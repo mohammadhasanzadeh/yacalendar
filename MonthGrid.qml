@@ -2,6 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Material 2.14
 
+import "util.js" as UTIL
+
 Control
 {
     id: control
@@ -16,9 +18,9 @@ Control
 
     function index_of_day(day)
     {
-        return private_props.find_in_model(day_model, (item) => {
-                                        return (item.day === day)
-                                    });
+        return UTIL.find_in_model(day_model, (item) => {
+                                      return item.day === day;
+                                  });
     }
 
     function select_day(day)
@@ -34,20 +36,6 @@ Control
     ListModel
     {
         id: day_model
-    }
-
-    QtObject
-    {
-        id: private_props
-        function find_in_model(model, criteria, return_object=false)
-        {
-            for (let counter = 0; counter < model.count; ++counter)
-            {
-                if (criteria(model.get(counter)))
-                    return (return_object) ? model.get(counter) : counter;
-            }
-            return (return_object) ? null : -1;
-        }
     }
 
     Component.onCompleted:
@@ -83,12 +71,12 @@ Control
             for (let day_count = 1; day_count <= 7; day_count++)
             {
                 day_model.append({
-                                in_month: (counter >= offset && counter <= max_days_in_month),
-                                year: control.year,
-                                month: control.month,
-                                start_day: (counter === offset),
-                                day: (counter - offset) + 1,
-                           });
+                                     in_month: (counter >= offset && counter <= max_days_in_month),
+                                     year: control.year,
+                                     month: control.month,
+                                     start_day: (counter === offset),
+                                     day: (counter - offset) + 1,
+                                 });
                 counter++;
             }
         }
