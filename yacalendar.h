@@ -18,22 +18,21 @@ public:
     Q_INVOKABLE int days_in_month(int month, int year) const;
     Q_INVOKABLE QDate first_day_of_month(int month, int year) const;
     Q_INVOKABLE QVariantMap today();
+
     Q_INVOKABLE QString format_date(const QDate& date, const QString& format);
-
     Q_INVOKABLE QString date_time_tostring(const QDateTime &datetime, const QString &format);
-
 
     Q_INVOKABLE QVariantMap to_gregorian(int year, int month, int day) const;
     Q_INVOKABLE QString to_gregorian(const QString& date, QChar in_separator, QString out_format) const;
-
     Q_INVOKABLE QVariantMap to_system_date(int year, int month, int day) const;
     Q_INVOKABLE QString to_system_date(const QDate& date, QChar separator, bool zero_padding = true) const;
     Q_INVOKABLE QString to_system_date(const QString& date, QString in_format, QChar separator, bool zero_padding = true) const;
+
     Q_INVOKABLE QVariantMap diff_dates(const QDate from, const QDate to);
+    Q_INVOKABLE QVariantMap add_month(int year, int month, int day, int n_month);
 
     Q_PROPERTY(CalendarTypes type READ get_type WRITE set_type NOTIFY type_changed)
     Q_PROPERTY(QLocale locale MEMBER m_locale NOTIFY locale_changed)
-
 
     enum class CalendarTypes
     {

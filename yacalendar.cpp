@@ -177,6 +177,13 @@ QVariantMap yacalendar::diff_dates(const QDate from, const QDate to)
     return diff_map;
 }
 
+QVariantMap yacalendar::add_month(int year, int month, int day, int n_month)
+{
+    QDate target_date = m_calendar.dateFromParts(year, month, day);
+    target_date = target_date.addMonths(n_month, m_calendar);
+    return to_system_date(target_date.year(), target_date.month(), target_date.day());
+}
+
 QString yacalendar::to_gregorian(const QString& date, QChar in_separator, QString out_format) const
 {
     QStringList year_month_day = date.split(in_separator);

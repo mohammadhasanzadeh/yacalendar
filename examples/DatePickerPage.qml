@@ -101,11 +101,13 @@ Item
         {
             if (result === CalendarDialog.Accepted)
             {
-                const date = `${selected_date.year}-${selected_date.month}-${selected_date.day}`
-                output_current_systems_lbl.text = `${calendar_system_combo.currentText}: ${date}`
+                const date = `${selected_date.year}-${selected_date.month}-${selected_date.day}`;
+                output_current_systems_lbl.text = `${calendar_system_combo.currentText}: ${date}`;
 
                 if (calendar_system_combo.currentText !== "Gregorian")
-                    output_gregorian_lbl.text = `Gregorian: ${calendar_system.to_gregorian(date, '-', 'yyyy-MM-dd')}`
+                    output_gregorian_lbl.text = `Gregorian: ${calendar_system.to_gregorian(date, '-', 'yyyy-MM-dd')}`;
+                else
+                    output_gregorian_lbl.text = "";
             }
         }
     }

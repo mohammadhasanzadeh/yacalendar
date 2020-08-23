@@ -51,13 +51,13 @@ ApplicationWindow
             switch (currentIndex)
             {
             case 0:
-                root.title_value = "Calendar Dialog"
+                root.title_value = "Calendar Dialog";
                 break;
             case 1:
-                root.title_value = "YearMonth Dialog"
+                root.title_value = "YearMonth Dialog";
                 break;
             default:
-                root.title_value = "undefined"
+                root.title_value = "undefined";
                 break;
             }
         }

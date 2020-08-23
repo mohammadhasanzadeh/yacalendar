@@ -50,7 +50,8 @@ Item
                 model: locale_model
                 textRole: "name"
                 valueRole: "name"
-                onCurrentValueChanged: {
+                onCurrentValueChanged:
+                {
                     year_month_dialog.locale = Qt.locale(currentValue);
                 }
             }
@@ -90,7 +91,7 @@ Item
         onFinished:
         {
             if (result === YearMonthDialog.Accepted)
-                output.text = `${selected_date.year}/${selected_date.month}, ${selected_date.month_name}`
+                output.text = `${selected_date.year}/${selected_date.month}, ${selected_date.month_name}`;
         }
     }
 }
