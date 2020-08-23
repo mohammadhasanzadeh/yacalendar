@@ -142,6 +142,41 @@ QString yacalendar::to_system_date(const QString &date, QString in_format, QChar
     return to_system_date(gregorian_date, separator, zero_padding);
 }
 
+QVariantMap yacalendar::diff_dates(const QDate from, const QDate to)
+{
+    QCalendar::YearMonthDay start = m_calendar.partsFromDate(from);
+    QCalendar::YearMonthDay end = m_calendar.partsFromDate(to);
+    QVariantMap diff_map;
+    QCalendar::YearMonthDay diff;
+    if (!start.isValid() || !end.isValid())
+    {
+        diff_map["year"] = diff.year;
+        diff_map["month"] = diff.month;
+        diff_map["day"] = diff.day;
+        return diff_map;
+    }
+    diff.year = end.year - start.year;
+    diff.month = end.month - start.month;
+    diff.day = end.day - start.day;
+    if (diff.day < 0)
+    {
+        diff.month--;
+        if(end.month == 1)
+            diff.day = m_calendar.daysInMonth(m_calendar.monthsInYear(end.year-1), end.year-1) - start.day + end.day;
+        else
+            diff.day = m_calendar.daysInMonth(end.month-1, end.year) - start.day + end.day;
+    }
+    while ( from < to && diff.month < 0 )
+    {
+        diff.month = m_calendar.monthsInYear(diff.year) + diff.month;
+        diff.year--;
+    }
+    diff_map["year"] = diff.year;
+    diff_map["month"] = diff.month;
+    diff_map["day"] = diff.day;
+    return diff_map;
+}
+
 QString yacalendar::to_gregorian(const QString& date, QChar in_separator, QString out_format) const
 {
     QStringList year_month_day = date.split(in_separator);
