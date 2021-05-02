@@ -57,14 +57,16 @@ QString yacalendar::zero_pad(int number) const
     return QString("%1").arg(number, 2, 10, QChar('0'));
 }
 
-QString yacalendar::month_name(int month)
+QString yacalendar::month_name(int month, int format)
 {
-    return m_calendar.monthName(m_locale, month);
+    QLocale::FormatType format_enum = static_cast<QLocale::FormatType>(format);
+    return m_calendar.monthName(m_locale, month, QCalendar::Unspecified, format_enum);
 }
 
-QString yacalendar::month_name(int month, int year)
+QString yacalendar::month_name(int month, int year, int format)
 {
-    return m_calendar.monthName(m_locale, month, year);
+    QLocale::FormatType format_enum = static_cast<QLocale::FormatType>(format);
+    return m_calendar.monthName(m_locale, month, year, format_enum);
 }
 
 int yacalendar::months_in_year(int year) const
@@ -189,6 +191,13 @@ QVariantMap yacalendar::add_month(int year, int month, int day, int n_month)
     return to_system_date(target_date.year(), target_date.month(), target_date.day());
 }
 
+bool yacalendar::is_between(const QDate &source_date, const QDate &from_date, const QDate &to_date, bool by_boundaries)
+{
+    if (!by_boundaries)
+        return (source_date > from_date && source_date < to_date);
+    return (source_date >= from_date && source_date <= to_date);
+}
+
 QString yacalendar::to_gregorian(const QString& date, QChar in_separator, QString out_format) const
 {
     QStringList year_month_day = date.split(in_separator);
@@ -209,4 +218,3 @@ QDate yacalendar::first_day_of_month(int month, int year) const
     QDate first_day_date = m_calendar.dateFromParts(year, month, 1);
     return first_day_date;
 }
-

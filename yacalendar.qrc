@@ -9,5 +9,7 @@
         <file>resource/left.svg</file>
         <file>util.js</file>
         <file>YearMonthDialog.qml</file>
+        <file>RangeCalendarDialog.qml</file>
+        <file>resource/close.svg</file>
     </qresource>
 </RCC>

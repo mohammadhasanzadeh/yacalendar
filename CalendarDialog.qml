@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.14
 import Qt.labs.calendar 1.0 as LAB
 
 import yacalendar 1.0
+import "util.js" as UTIL
 
 Dialog
 {
@@ -79,18 +80,6 @@ Dialog
 
     signal finished(int result, var selected_date)
 
-    function get_day_headers()
-    {
-        let first_day_of_week = control.locale.firstDayOfWeek;
-        const days = []
-        while (days.length < 7)
-        {
-            days.push(first_day_of_week);
-            first_day_of_week = (first_day_of_week === 6) ? 0 : first_day_of_week + 1;
-        }
-        return days;
-    }
-
     function format(date, sperator = '-')
     {
         return `${date.year}${sperator}${date.month}${sperator}${date.day}`
@@ -98,7 +87,7 @@ Dialog
 
     onLocaleChanged:
     {
-        control.day_headers = get_day_headers();
+        control.day_headers = UTIL.get_day_headers(control.locale);
     }
 
     onOpened:
@@ -114,6 +103,7 @@ Dialog
         selected_year = selected_month = selected_day = -1;
         listview.model = undefined;
     }
+
     onAccepted:
     {
         const selected_date = {
@@ -267,9 +257,8 @@ Dialog
                 height: container.height - (footer.height + control.bottomPadding)
                 system: control.system
                 padding: 0
-                cell_wdith: (container.width / 7) - 0.1
-                cell_height: cell_wdith
-                current_index: -1
+                cell_width: (container.width / 7) - 0.1
+                cell_height: cell_width
 
                 property bool is_current_item: ListView.isCurrentItem
 
@@ -277,13 +266,12 @@ Dialog
                 {
                     if (!is_current_item)
                     {
-                        current_index = -1;
                         return;
                     }
 
                     if (model.year === selected_year && model.month === selected_month && selected_day > -1)
                     {
-                        current_index = index_of_day(selected_day);
+                        month_grid.select_day(control.selected_day, true);
                         return;
                     }
 
@@ -292,7 +280,7 @@ Dialog
                         const today = control.system.today();
                         if (today.year !== month_grid.year && today.month !== month_grid.month)
                             return;
-                        current_index = month_grid.index_of_day(today.day);
+                        month_grid.select_day(today.day, true);
                         selected_day_index = month_grid.index_of_day(today.day);
                         selected_month = today.month;
                         selected_year = today.year;
@@ -303,41 +291,42 @@ Dialog
                 highlight: Rectangle {
                     radius: (width / 2)
                     color: Material.accent
-                    visible: (month_grid.is_current_item && month_grid.current_index > -1)
+                    width: month_grid.cell_width
+                    height: month_grid.cell_height
                 }
 
                 delegate: Rectangle {
-                    width: month_grid.cell_wdith
+                    width: month_grid.cell_width
                     height: month_grid.cell_height
-                    opacity: (model.in_month) ? 1 : 0
+                    opacity: (dataModel.in_month) ? 1 : 0
                     radius: (width /2)
                     color: "transparent"
                     border.color: Material.foreground
                     border.width: (
                                       month_grid.is_current_item &&
+                                      !dataModel.selected &&
                                       control.today.year === month_grid.year &&
                                       control.today.month === month_grid.month &&
-                                      control.today.day === model.day &&
-                                      month_grid.current_index !== index
+                                      control.today.day === dataModel.day
                                       )
                     Label
                     {
                         anchors.centerIn: parent
-                        text: model.day
-                        color: (month_grid.current_index === index) ? "white" : Material.foreground
+                        text: dataModel.day
+                        color: (dataModel.selected) ? "white" : Material.foreground
                     }
 
                     MouseArea
                     {
                         anchors.fill: parent
                         onClicked: {
-                            if (!model.in_month)
+                            if (!dataModel.in_month)
                                 return;
-                            control.selected_day = model.day;
-                            control.selected_month = model.month;
-                            control.selected_year = model.year;
-                            control.selected_day_index = index;
-                            month_grid.current_index = index;
+                            control.selected_day = dataModel.day;
+                            control.selected_month = dataModel.month;
+                            control.selected_year = dataModel.year;
+                            control.selected_day_index = dataModel.index;
+                            month_grid.select_day(control.selected_day, true);
                         }
                     }
                 }
