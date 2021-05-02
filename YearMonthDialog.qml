@@ -47,7 +47,9 @@ Dialog
         locale: control.locale
     }
 
-    Connections {
+    // FIXME: Qt 5.15 Deprecation warnings
+    Connections
+    {
         target: control.system
 
         onLocaleChanged:
@@ -68,6 +70,7 @@ Dialog
     property int to: 2030
     property int selected_month: -1
     property int selected_year: -1
+    property int month_name_format: Locale.LongFormat
 
     signal finished(int result, var selected_date)
 
@@ -78,12 +81,12 @@ Dialog
 
     function generate_month_range(year)
     {
-        month_range.clear();
+        control.month_range.clear();
         const numbers_of_month = control.system.months_in_year(year);
         for (let counter = 1; counter <= numbers_of_month;  counter++)
         {
-            let month_name = control.system.month_name(counter, year);
-            month_range.append({
+            let month_name = control.system.month_name(counter, year, control.month_name_format);
+            control.month_range.append({
                                    "id": counter,
                                    "name": month_name
                                });
@@ -188,7 +191,7 @@ Dialog
         GridView
         {
             id: month_gridview
-            model: month_range
+            model: control.month_range
             Layout.fillWidth: true
             Layout.fillHeight: true
             cellWidth: ((container.width - 10) / 3)
@@ -203,6 +206,7 @@ Dialog
                 {
                     anchors.centerIn: parent
                     text: model.name
+                    color: (month_gridview.currentIndex === index) ? "white" : Material.foreground
                 }
 
                 MouseArea
