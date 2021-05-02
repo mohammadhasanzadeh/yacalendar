@@ -43,6 +43,8 @@ ApplicationWindow
         DatePickerPage
         { }
 
+        DateRangePickerPage {}
+
         YearMonthPage
         { }
 
@@ -54,6 +56,9 @@ ApplicationWindow
                 root.title_value = "Calendar Dialog";
                 break;
             case 1:
+                root.title_value = "Range Dialog";
+                break;
+            case 2:
                 root.title_value = "YearMonth Dialog";
                 break;
             default:

@@ -378,8 +378,8 @@ Dialog
                             {
                                 target: background_rect
                                 border.width: 3
-                                border.color: "white"
-                                color:  Material.accent;
+                                border.color: Material.background
+                                color: Material.accent
                                 visible: true
                             }
                             PropertyChanges

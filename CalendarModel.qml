@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick 2.14
 import QtQml.Models 2.14
 
 import "util.js" as UTIL

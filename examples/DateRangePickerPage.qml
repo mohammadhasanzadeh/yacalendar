@@ -50,7 +50,7 @@ Item
                 textRole: "name"
                 valueRole: "name"
                 onCurrentValueChanged: {
-                    calendar_dialog.locale = Qt.locale(currentValue);
+                    range_dialog.locale = Qt.locale(currentValue);
                 }
             }
         }
@@ -61,31 +61,23 @@ Item
             Layout.preferredWidth: 200
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-                calendar_dialog.open()
+                range_dialog.open()
             }
         }
 
         Label
         {
-            id: output_current_systems_lbl
+            id: range_lbl
             Layout.fillWidth: true
             horizontalAlignment: Qt.AlignHCenter
             font.pointSize: 20
-        }
-
-        Label
-        {
-            id: output_gregorian_lbl
-            Layout.fillWidth: true
-            horizontalAlignment: Qt.AlignHCenter
-            font.pointSize: 18
-            font.weight: Font.Light
+            text: "Range: -"
         }
     }
 
-    CalendarDialog
+    RangeCalendarDialog
     {
-        id: calendar_dialog
+        id: range_dialog
         model: CalendarModel {
             from: new Date(1350, 1, 1)
             to: new Date(2040, 12, 1)
@@ -94,20 +86,16 @@ Item
         system: CalendarSystem {
             id: calendar_system
             type: calendar_system_combo.currentValue
-            locale: calendar_dialog.locale
+            locale: range_dialog.locale
         }
 
         onFinished:
         {
             if (result === CalendarDialog.Accepted)
             {
-                const date = `${selected_date.year}-${selected_date.month}-${selected_date.day}`;
-                output_current_systems_lbl.text = `${calendar_system_combo.currentText}: ${date}`;
-
-                if (calendar_system_combo.currentText !== "Gregorian")
-                    output_gregorian_lbl.text = `Gregorian: ${calendar_system.to_gregorian(date, '-', 'yyyy-MM-dd')}`;
-                else
-                    output_gregorian_lbl.text = "";
+                range_lbl.text = `${range_dialog.start_date.year}-\
+${range_dialog.start_date.month}-${range_dialog.start_date.day} 🡢 ${range_dialog.end_date.year}-\
+${range_dialog.end_date.month}-${range_dialog.end_date.day}`;
             }
         }
     }
