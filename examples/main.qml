@@ -16,8 +16,6 @@ ApplicationWindow
 
     property string title_value: "Calendar Dialog"
     Material.theme: themeSwitch.checked ? Material.Dark : Material.Light
-    Material.accent: Material.theme === Material.Light ? Material.color(Material.DeepPurple, Material.Shade700)
-                                                       : Material.color(Material.Red, Material.Shade400)
 
     header: ToolBar {
         Label

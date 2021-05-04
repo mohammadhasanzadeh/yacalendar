@@ -2,9 +2,13 @@
 ## Yet another calendar component for Qt Quick Controls 2
 Some easy to use and  `Qt.labs.calendar` like components for use the QCalendar API in Qt Quick Controls 2
 
-![](static/gregorian.png) 
-![](static/jalali.png)
-![](static/year_selection.png)
+## Screenshots:
+
+| ![](static/gregorian.png) | ![](static/jalali.png) | ![](static/gregorian_range.png) | ![](static/jalali_range.png) |
+| :-----------------------: | :--------------------: | :-----------------------------: | :--------------------------: |
+|        `Gregorian`        |       `Jalali`         |   `Gregorian range selection`   |  `Jalali range selection`    |
+| ![](static/yearmonth.png) |
+|   `YearMonth Selection`   |
 
 ## Requirements:
 Qt >= 5.14
@@ -17,6 +21,20 @@ Add `yacalendar.pri` to your `.pro` file:
 And then register the QML types with calling the `register_calendar` function in the `main.cpp`, like the below:
 
 `yacalendar::register_calendar();`
+
+## Ready to use components:
+Some components created for ease of use in applications:
++ CalendarDialog
++ RangeCalendarDialog
++ YearMonthDialog
+
+## Basic Components:
+Also you can create your custom calendar with the following components:
++ CalendarSystem
++ CalendarModel
++ MonthGrid
++ RangeModel
++ GridCombobox
 
 ## Usage:
 ```
@@ -43,11 +61,3 @@ CalendarDialog
 }
 ```
 for other usage and date conversion see the examples directory.
-
-## Components:
-Also you can create your custom calendar with the following components:
-+ CalendarSystem
-+ CalendarModel
-+ MonthGrid
-+ RangeModel
-+ GridCombobox
