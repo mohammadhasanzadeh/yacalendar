@@ -65,11 +65,11 @@ Control
     {
         const days_in_month = system.days_in_month(month, year);
         let temp = system.to_gregorian(control.start_date.year, control.start_date.month, control.start_date.day);
-        const qdate_start_date = new Date(temp.year, temp.month, temp.day);
+        const qdate_start_date = new Date(temp.year, (temp.month - 1), temp.day);
         temp = system.to_gregorian(control.end_date.year, control.end_date.month, control.end_date.day);
-        const qdate_end_date = new Date(temp.year, temp.month, temp.day);
+        const qdate_end_date = new Date(temp.year, (temp.month - 1), temp.day);
         temp = system.to_gregorian(control.year, control.month, 1);
-        const qdate_source_date = new Date(temp.year, temp.month, temp.day);
+        const qdate_source_date = new Date(temp.year, (temp.month - 1), temp.day);
 
         if (control.year === control.start_date.year &&
                 control.year === control.end_date.year &&
