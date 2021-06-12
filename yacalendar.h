@@ -32,6 +32,7 @@ public:
 
     Q_INVOKABLE QVariantMap diff_dates(const QDate from, const QDate to);
     Q_INVOKABLE QVariantMap add_month(int year, int month, int day, int n_month);
+    Q_INVOKABLE QVariantMap add_days(int year, int month, int day, int n_day);
     Q_INVOKABLE bool is_between(const QDate& source_date, const QDate& from_date, const QDate& to_date, bool by_boundaries = true);
 
     Q_PROPERTY(CalendarTypes type READ get_type WRITE set_type NOTIFY type_changed)

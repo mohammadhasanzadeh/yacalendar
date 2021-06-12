@@ -191,6 +191,13 @@ QVariantMap yacalendar::add_month(int year, int month, int day, int n_month)
     return to_system_date(target_date.year(), target_date.month(), target_date.day());
 }
 
+QVariantMap yacalendar::add_days(int year, int month, int day, int n_day)
+{
+    QDate target_date = m_calendar.dateFromParts(year, month, day);
+    target_date = target_date.addDays(n_day);
+    return to_system_date(target_date.year(), target_date.month(), target_date.day());
+}
+
 bool yacalendar::is_between(const QDate &source_date, const QDate &from_date, const QDate &to_date, bool by_boundaries)
 {
     if (!by_boundaries)
