@@ -20,7 +20,22 @@ Dialog
     leftPadding: 5
     rightPadding: 5
     bottomPadding: 5
-    standardButtons: Dialog.Ok | Dialog.Cancel
+
+    footer: DialogButtonBox {
+        Button
+        {
+            text: qsTr("Cancel")
+            DialogButtonBox.buttonRole: DialogButtonBox.RejectRole
+            flat: true
+        }
+        Button
+        {
+            text: qsTr("Ok")
+            DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
+            visible: (Object.keys(control.start_date).length && Object.keys(control.end_date).length)
+            flat: true
+        }
+    }
     closePolicy: Dialog.CloseOnEscape
 
     property CalendarModel model: CalendarModel {
