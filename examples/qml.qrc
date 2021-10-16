@@ -6,5 +6,6 @@
         <file>resource/palette.svg</file>
         <file>YearMonthPage.qml</file>
         <file>DateRangePickerPage.qml</file>
+        <file>QuarterRangeAccess.qml</file>
     </qresource>
 </RCC>
