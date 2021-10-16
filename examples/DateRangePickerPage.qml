@@ -60,7 +60,8 @@ Item
             text: "Open Calendar"
             Layout.preferredWidth: 200
             Layout.alignment: Qt.AlignHCenter
-            onClicked: {
+            onClicked:
+            {
                 range_dialog.open()
             }
         }
@@ -87,6 +88,14 @@ Item
             id: calendar_system
             type: calendar_system_combo.currentValue
             locale: range_dialog.locale
+        }
+
+        QuarterRangeAccess
+        {
+            parent: range_dialog.contentItem.parent
+            target: range_dialog
+            anchors.right: parent.right
+            anchors.top: parent.top
         }
 
         onFinished:

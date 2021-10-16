@@ -31,3 +31,16 @@ function is_lower_equal_than(system, first_date, second_date)
     const qdate_second_date = new Date(temp.year, temp.month, temp.day);
     return (qdate_first_date <= qdate_second_date);
 }
+
+function is_valid_date_object(date)
+{
+    return ("year" in date && "month" in date && "day" in date);
+}
+
+function is_date_valid(date, system)
+{
+    if (!is_valid_date_object(date))
+        return false;
+
+    return system.is_date_valid(date.year, date.month, date.day);
+}

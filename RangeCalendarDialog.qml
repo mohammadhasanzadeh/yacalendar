@@ -70,6 +70,29 @@ Dialog
                     );
     }
 
+    function select_range(start_date, end_date)
+    {
+        if (!UTIL.is_date_valid(start_date, control.system))
+        {
+            throw "Not a valid date.";
+        }
+
+        if (!UTIL.is_date_valid(end_date, control.system))
+        {
+            throw "Not a valid date.";
+        }
+
+        start_date.index = control.model.index_of(start_date.year, start_date.month);
+        private_props.m_start_date = start_date;
+        private_props.m_start_dateChanged();
+
+        end_date.index = control.model.index_of(end_date.year, end_date.month);
+        private_props.m_end_date = end_date;
+        private_props.m_end_dateChanged();
+        private_props.select_flag = false;
+        listview.currentIndex = end_date.index;
+    }
+
     onLocaleChanged:
     {
         control.day_headers = UTIL.get_day_headers(control.locale);
@@ -292,6 +315,7 @@ Dialog
             snapMode: ListView.SnapOneItem
             highlightRangeMode: ListView.StrictlyEnforceRange
             model: control.opened ? control.model.model : undefined
+            highlightMoveDuration: 500
 
             onModelChanged:
             {

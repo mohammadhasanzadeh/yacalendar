@@ -205,6 +205,11 @@ bool yacalendar::is_between(const QDate &source_date, const QDate &from_date, co
     return (source_date >= from_date && source_date <= to_date);
 }
 
+bool yacalendar::is_date_valid(int year, int month, int day) const
+{
+    return m_calendar.isDateValid(year, month, day);
+}
+
 QString yacalendar::to_gregorian(const QString& date, QChar in_separator, QString out_format) const
 {
     QStringList year_month_day = date.split(in_separator);
