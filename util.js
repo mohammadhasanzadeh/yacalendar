@@ -26,9 +26,9 @@ function get_day_headers(locale)
 function is_lower_equal_than(system, first_date, second_date)
 {
     let temp = system.to_gregorian(first_date.year, first_date.month, first_date.day);
-    const qdate_first_date = new Date(temp.year, temp.month, temp.day);
+    const qdate_first_date = new Date(temp.year, (temp.month - 1), temp.day);
     temp = system.to_gregorian(second_date.year, second_date.month, second_date.day);
-    const qdate_second_date = new Date(temp.year, temp.month, temp.day);
+    const qdate_second_date = new Date(temp.year, (temp.month), temp.day);
     return (qdate_first_date <= qdate_second_date);
 }
 
