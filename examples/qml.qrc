@@ -7,5 +7,6 @@
         <file>YearMonthPage.qml</file>
         <file>DateRangePickerPage.qml</file>
         <file>QuarterRangeAccess.qml</file>
+        <file>YearPickerPage.qml</file>
     </qresource>
 </RCC>

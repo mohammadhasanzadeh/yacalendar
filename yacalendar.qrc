@@ -11,5 +11,6 @@
         <file>YearMonthDialog.qml</file>
         <file>RangeCalendarDialog.qml</file>
         <file>resource/close.svg</file>
+        <file>YearPickerDialog.qml</file>
     </qresource>
 </RCC>

@@ -38,26 +38,26 @@ ApplicationWindow
         currentIndex: 0
         anchors.fill: parent
 
-        DatePickerPage
-        { }
-
+        DatePickerPage {}
         DateRangePickerPage {}
-
-        YearMonthPage
-        { }
+        YearMonthPage {}
+        YearPickerPage{}
 
         onCurrentIndexChanged:
         {
             switch (currentIndex)
             {
             case 0:
-                root.title_value = "Calendar Dialog";
+                root.title_value = "CalendarDialog";
                 break;
             case 1:
-                root.title_value = "Range Dialog";
+                root.title_value = "RangeDialog";
                 break;
             case 2:
-                root.title_value = "YearMonth Dialog";
+                root.title_value = "YearMonthDialog";
+                break;
+            case 3:
+                root.title_value = "YearPickerDialog";
                 break;
             default:
                 root.title_value = "undefined";

@@ -5,3 +5,4 @@ MonthGrid 1.0 MonthGrid.qml
 RangeModel 1.0 RangeModel.qml
 YearMonthDialog 1.0 YearMonthDialog.qml
 RangeCalendarDialog 1.0 RangeCalendarDialog.qml
+YearPickerDialog 1.0 YearPickerDialog.qml

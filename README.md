@@ -27,6 +27,7 @@ Some components created for ease of use in applications:
 + CalendarDialog
 + RangeCalendarDialog
 + YearMonthDialog
++ YearPickerDialog
 
 ## Basic Components:
 Also you can create your custom calendar with the following components:
